@@ -21,7 +21,7 @@
       packages = eachSystem (system:
         let pkgs = nixpkgs.legacyPackages.${system}; in
         {
-          default = sbt.mkSbtDerivation.x86_64-linux {
+          default = sbt.mkSbtDerivation.${system} {
             pname = "scala-gtk-example";
             version = "0.1.0";
             src = self;
