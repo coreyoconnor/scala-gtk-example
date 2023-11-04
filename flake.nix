@@ -33,7 +33,6 @@
               mkdir -p $out/bin
               cp target/scala-gtk-example $out/bin/
             '';
-            LLVM_BIN = pkgs.clang + "/bin";
             buildInputs = with pkgs; [
               gtk4
             ];
