@@ -1,13 +1,9 @@
 {
   description = "scala-gtk-example";
 
-  # you probably have this one already
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
 
-  # add this line
   inputs.sbt.url = "github:zaninime/sbt-derivation/master";
-
-  # recommended for first style of usage documented below, but not necessary
   inputs.sbt.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.systems.url = "github:nix-systems/default";
