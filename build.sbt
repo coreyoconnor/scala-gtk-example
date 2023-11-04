@@ -18,7 +18,6 @@ lazy val root = project
       val out = nativeConfig.value
         .withLTO(LTO.thin)
         .withMode(Mode.releaseFast)
-        .withGC(GC.commix)
         .withCompileOptions(pkgConfig("gtk4", "cflags"))
         .withLinkingOptions(pkgConfig("gtk4", "libs"))
 

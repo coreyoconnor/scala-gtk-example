@@ -38,7 +38,6 @@
               gtk4
             ];
             nativeBuildInputs = with pkgs; [
-              boehmgc
               clang
               libunwind
               pkg-config
