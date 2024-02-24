@@ -21,7 +21,7 @@
       packages = eachSystem (system:
         let pkgs = nixpkgs.legacyPackages.${system}; in
         {
-          default = sbt.mkSbtDerivation.${system} {
+          default = (sbt.mkSbtDerivation.${system}).withOverrides({ stdenv = pkgs.llvmPackages_15.stdenv; }) {
             pname = "scala-gtk-example";
             version = "0.1.0";
             src = self;
@@ -37,13 +37,15 @@
               gtk4
             ];
             nativeBuildInputs = with pkgs; [
-              clang
+              llvmPackages_15.clang
               libunwind
               pkg-config
               stdenv
               which
               zlib
             ];
+            env.NIX_CFLAGS_COMPILE = "-Wno-unused-command-line-argument";
+            hardeningDisable = [ "fortify" ];
           };
         }
       );
