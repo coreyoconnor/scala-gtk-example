@@ -27,9 +27,10 @@
             src = self;
             depsSha256 = "sha256-BS7bEtrkJTEj2aJ91L1NAA06W0CKIYlG0v3w7qqgyE8=";
             buildPhase = ''
-              sbt 'show stage'
+              sbt compile
             '';
             installPhase = ''
+              sbt 'show stage'
               mkdir -p $out/bin
               cp target/scala-gtk-example $out/bin/
             '';
@@ -37,6 +38,7 @@
               gtk4
             ];
             nativeBuildInputs = with pkgs; [
+              boehmgc
               llvmPackages_15.clang
               libunwind
               pkg-config
