@@ -39,7 +39,6 @@
             ];
             nativeBuildInputs = with pkgs; [
               boehmgc
-              llvmPackages_15.clang
               libunwind
               pkg-config
               stdenv
