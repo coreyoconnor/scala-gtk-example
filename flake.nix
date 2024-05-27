@@ -36,14 +36,13 @@
             '';
             buildInputs = with pkgs; [
               gtk4
-            ];
-            nativeBuildInputs = with pkgs; [
               boehmgc
               libunwind
-              pkg-config
-              stdenv
-              which
               zlib
+            ];
+            nativeBuildInputs = with pkgs; [
+              pkg-config
+              which
             ];
             env.NIX_CFLAGS_COMPILE = "-Wno-unused-command-line-argument";
             hardeningDisable = [ "fortify" ];
