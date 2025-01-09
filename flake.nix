@@ -46,7 +46,7 @@
       in
       rec {
         packages = {
-          default = (sbt.mkSbtDerivation.${system}).withOverrides({ stdenv = pkgs.llvmPackages_15.stdenv; }) {
+          default = (sbt.mkSbtDerivation.${system}).withOverrides({ stdenv = pkgs.llvmPackages_18.stdenv; }) {
             pname = "scala-gtk-example";
             version = "0.1.0";
             src = self;
@@ -70,11 +70,17 @@
 
         devShell = pkgs.devshell.mkShell {
           imports = [ typelevel-nix.typelevelShell "${pkgs.devshell.extraModulesDir}/language/c.nix"];
-          name = "scalatromino-devshell";
+          name = "scala-gtk-example-devshell";
           typelevelShell = {
             jdk.package = pkgs.jdk21;
             native.enable = true;
           };
+          env = [
+            {
+              name = "NIX_CFLAGS_COMPILE_${pkgs.stdenv.cc.suffixSalt}";
+              value = "-Wno-unused-command-line-argument";
+            }
+          ];
           packagesFrom = [ packages.default ];
           language.c = {
             libraries = buildInputs;
